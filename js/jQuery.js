@@ -22,10 +22,10 @@ $("#searchterm").keyup(function(e){
 
 
 $("#randomsearch").click(function(e){
-        //var q = $("#searchterm").val();
-        $.getJSON("http://en.wikipedia.org/wiki/Special:Random",
+        var q = $("#searchterm").val();
+        $.getJSON("http://en.wikipedia.org/w/api.php?callback=?",
         {
-          //srsearch: q,
+          srsearch: q,
           action: "query",
           list: "search",
           format: "json"
