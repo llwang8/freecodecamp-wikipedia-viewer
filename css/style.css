@@ -21,3 +21,31 @@ input {
     width: 360px;
     border-radius: 5%;
 }
+.search {
+    padding:6px 15px 6px 30px;
+    margin:3px;
+    background-color: #13142d;
+}
+.rounded {
+    border-radius:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+}
+.search:hover {
+    background-color: #e7e7e7;
+    border-radius:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+}
+.search[type=reset]:active {
+    background-color: #e7e7e7;
+    border-radius:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+}
+.search[type=reset]:focus {
+    background-color: #e7e7e7;
+    border-radius:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+}
