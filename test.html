@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Test - Wikipedia Viewer</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#inputform').submit(function(){
+            var name = $('#name').attr("value");
+            getAreaMetaInfo_Wikipedia(name);
+            return false;
+        });
+
+
+        function getAreaMetaInfo_Wikipedia(page_id) {
+            title = page_id;
+            $.ajax({
+                url: 'http://en.wikipedia.org/w/api.php',
+                data: {
+                    action: 'parse',
+                    prop: 'text',
+                    page: title,
+                    format: 'json'
+                },
+                dataType: 'jsonp',
+                success: function(data) {
+                    wikipage = $("<div>" + data.parse.text['*'] + "</div>)";
+                    wikipage.find('sup').remove();
+                    $("#wiki_container").html(wikipage);
+                    $("#wiki_attribution").html("Description above from the Wikipedia article <a href=’http://en.wikipedia.org/wiki/" + title + "' target='wikipedia'>" +title.replace(/_/g, ' ') +
+                    "</a>, licensed under <a href='http://creativecommons.org/licenses/by-sa/3.0/' target='wikipedia'>CC-BY-SA</a>, full list of contributors <a href='http://en.wikipedia.org/w/index.php?title=" + title + "&action=history' target='wikipedia'>here</a>. Community Pages are not affiliated with, or endorsed by, anyone associated with the topic.");
+                }
+            });
+        }
+
+        wikipage.find('a').each(function() {
+            var href = $(this).attr(‘href’);
+            /* put a check for wikipedia link. do not touch rest of the links*/
+            $(this).attr('href', "javascript:getAreaMetaInfo_Wikipedia(‘"+ href.substring(href.lastIndexOf('/')+1) + "')")
+        });
+
+        $("#References").hide();
+        $("div.reflist").hide();  // hide reference list on wiki
+        $("table.infobox").hide(); //hide info boxes on wiki
+        $("table.toc").hide(); // hide table of content
+        $("table.navbox").hide(); // hide navigation box
+        $("span.editsection").hide(); // hide edit link
+
+    </script>
+
+</head>
+<body>
+<!--
+<form action=http://www.wikipedia.org/search-redirect.php method=get>
+Search Wikipedia:
+<input type="hidden" name="language" value="en" />
+<input type="text" name="search" size=20 />
+<input type="submit" name="go" value="Go!" />
+</form>
+-->
+
+<form accept-charset=UTF-8 action="" id="inputform" method="post">
+<label for="name">Name</label>
+<input id="name" name="name" type="text">
+<input name="commit" type="submit" value="Search">
+</form>
+
+<div id="container">
+<div id="wiki_container"></div>
+<div id="wiki_attribution" style="text-align:left; border-top:1px solid #c73734; font-size:13px;"></div>
+</div>
+
+
+</body>
+</html>

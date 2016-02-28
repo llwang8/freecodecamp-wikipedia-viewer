@@ -21,6 +21,9 @@ input {
     width: 360px;
     border-radius: 5%;
 }
+.bt-search {
+    color: #13142d;
+}
 .search {
     padding:6px 15px 6px 30px;
     margin:3px;
@@ -37,15 +40,29 @@ input {
     -moz-border-radius:15px;
     -webkit-border-radius:15px;
 }
-.search[type=reset]:active {
+.search:active {
     background-color: #e7e7e7;
     border-radius:15px;
     -moz-border-radius:15px;
     -webkit-border-radius:15px;
+    color: #13142d;
 }
-.search[type=reset]:focus {
+.search:focus {
     background-color: #e7e7e7;
     border-radius:15px;
     -moz-border-radius:15px;
     -webkit-border-radius:15px;
+    color: #13142d;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.result {
+    padding:6px 15px 6px 30px;
+    margin:3px;
+    background-color: #13142d;
+    color: #13142d;
 }
