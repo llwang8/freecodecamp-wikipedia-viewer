@@ -1,0 +1,23 @@
+body {
+
+    background-color: #13142d;
+    max-width: 100%;
+    color: #ffa31a;
+    font-family: 'Lato', sans-serif;
+}
+.title {
+    font-size: 36px;
+    font-style: ;
+
+}
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+input {
+    width: 360px;
+    border-radius: 5%;
+}
